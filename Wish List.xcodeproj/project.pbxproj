@@ -9,21 +9,29 @@
 /* Begin PBXBuildFile section */
 		8B5C2F6F7F593811F943F59D /* Pods_Wish_List.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7DE87977A0D0399E5E43A05 /* Pods_Wish_List.framework */; };
 		9C01A0CD1E50334700DFC3F1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C01A0CC1E50334700DFC3F1 /* AppDelegate.swift */; };
-		9C01A0CF1E50334700DFC3F1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C01A0CE1E50334700DFC3F1 /* ViewController.swift */; };
 		9C01A0D21E50334700DFC3F1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C01A0D01E50334700DFC3F1 /* Main.storyboard */; };
 		9C01A0D41E50334700DFC3F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C01A0D31E50334700DFC3F1 /* Assets.xcassets */; };
 		9C01A0D71E50334700DFC3F1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C01A0D51E50334700DFC3F1 /* LaunchScreen.storyboard */; };
+		9C01A0DF1E5035B000DFC3F1 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C01A0DE1E5035B000DFC3F1 /* LoginViewController.swift */; };
+		9C01A0E11E5035D200DFC3F1 /* WishListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C01A0E01E5035D200DFC3F1 /* WishListTableViewController.swift */; };
+		9C01A0EC1E50374E00DFC3F1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C01A0EB1E50374E00DFC3F1 /* User.swift */; };
+		9C01A0F11E50391C00DFC3F1 /* WishListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C01A0F01E50391C00DFC3F1 /* WishListItem.swift */; };
+		9CFF347E1E5159AC00AE874B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9CFF347D1E5159AC00AE874B /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		9A74BBA987518F9DB9187387 /* Pods-Wish List.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wish List.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wish List/Pods-Wish List.release.xcconfig"; sourceTree = "<group>"; };
 		9C01A0C91E50334700DFC3F1 /* Wish List.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wish List.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C01A0CC1E50334700DFC3F1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9C01A0CE1E50334700DFC3F1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9C01A0D11E50334700DFC3F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9C01A0D31E50334700DFC3F1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9C01A0D61E50334700DFC3F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9C01A0D81E50334700DFC3F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9C01A0DE1E5035B000DFC3F1 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		9C01A0E01E5035D200DFC3F1 /* WishListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WishListTableViewController.swift; sourceTree = "<group>"; };
+		9C01A0EB1E50374E00DFC3F1 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		9C01A0F01E50391C00DFC3F1 /* WishListItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WishListItem.swift; sourceTree = "<group>"; };
+		9CFF347D1E5159AC00AE874B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C50CBC2BBA735787B3D0BACA /* Pods-Wish List.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wish List.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wish List/Pods-Wish List.debug.xcconfig"; sourceTree = "<group>"; };
 		C7DE87977A0D0399E5E43A05 /* Pods_Wish_List.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wish_List.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -70,13 +78,49 @@
 			isa = PBXGroup;
 			children = (
 				9C01A0CC1E50334700DFC3F1 /* AppDelegate.swift */,
-				9C01A0CE1E50334700DFC3F1 /* ViewController.swift */,
-				9C01A0D01E50334700DFC3F1 /* Main.storyboard */,
-				9C01A0D31E50334700DFC3F1 /* Assets.xcassets */,
-				9C01A0D51E50334700DFC3F1 /* LaunchScreen.storyboard */,
-				9C01A0D81E50334700DFC3F1 /* Info.plist */,
+				9C01A0EF1E50376000DFC3F1 /* Model */,
+				9C01A0E31E5035E300DFC3F1 /* UI */,
+				9C01A0E21E5035D900DFC3F1 /* ViewControllers */,
+				9C01A0E41E5035EA00DFC3F1 /* Helper */,
 			);
 			path = "Wish List";
+			sourceTree = "<group>";
+		};
+		9C01A0E21E5035D900DFC3F1 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				9C01A0DE1E5035B000DFC3F1 /* LoginViewController.swift */,
+				9C01A0E01E5035D200DFC3F1 /* WishListTableViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		9C01A0E31E5035E300DFC3F1 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				9C01A0D01E50334700DFC3F1 /* Main.storyboard */,
+				9C01A0D51E50334700DFC3F1 /* LaunchScreen.storyboard */,
+				9C01A0D31E50334700DFC3F1 /* Assets.xcassets */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		9C01A0E41E5035EA00DFC3F1 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				9CFF347D1E5159AC00AE874B /* GoogleService-Info.plist */,
+				9C01A0D81E50334700DFC3F1 /* Info.plist */,
+			);
+			name = Helper;
+			sourceTree = "<group>";
+		};
+		9C01A0EF1E50376000DFC3F1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9C01A0F01E50391C00DFC3F1 /* WishListItem.swift */,
+				9C01A0EB1E50374E00DFC3F1 /* User.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		D4E1B7656AB5C835C76F9AAD /* Pods */ = {
@@ -152,6 +196,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C01A0D71E50334700DFC3F1 /* LaunchScreen.storyboard in Resources */,
+				9CFF347E1E5159AC00AE874B /* GoogleService-Info.plist in Resources */,
 				9C01A0D41E50334700DFC3F1 /* Assets.xcassets in Resources */,
 				9C01A0D21E50334700DFC3F1 /* Main.storyboard in Resources */,
 			);
@@ -212,7 +257,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9C01A0CF1E50334700DFC3F1 /* ViewController.swift in Sources */,
+				9C01A0E11E5035D200DFC3F1 /* WishListTableViewController.swift in Sources */,
+				9C01A0EC1E50374E00DFC3F1 /* User.swift in Sources */,
+				9C01A0F11E50391C00DFC3F1 /* WishListItem.swift in Sources */,
+				9C01A0DF1E5035B000DFC3F1 /* LoginViewController.swift in Sources */,
 				9C01A0CD1E50334700DFC3F1 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -379,6 +427,7 @@
 				9C01A0DD1E50334700DFC3F1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
