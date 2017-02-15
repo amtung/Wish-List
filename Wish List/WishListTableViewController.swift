@@ -25,6 +25,7 @@ class WishListTableViewController: UITableViewController {
         user = User(uid: (FIRAuth.auth()?.currentUser?.uid)!, email: (FIRAuth.auth()?.currentUser?.email)!)
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addWishListItem))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(title: "Logout", style: UIBarButtonItemStyle.done, target: self, action: #selector(logoutUser))
         
         databaseReference.observe(.value, with: { (snapshot: FIRDataSnapshot) in
             dump(snapshot)
@@ -34,6 +35,21 @@ class WishListTableViewController: UITableViewController {
     }
     
     // MARK: - Methods
+    
+    func logoutUser() {
+        if FIRAuth.auth()?.currentUser != nil {
+            do {
+                print("log out")
+                try FIRAuth.auth()?.signOut()
+                
+                let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+                let loginViewController = storyBoard.instantiateViewController(withIdentifier: "LoginVC") as! LoginViewController
+                self.present(loginViewController, animated:true, completion:nil)
+            } catch {
+                print("Error logging out user: \(error.localizedDescription)")
+            }
+        }
+    }
     
     func addWishListItem() {
         let alert = UIAlertController(title: "Wish List Item", message: "Add your item here", preferredStyle: .alert)
@@ -46,14 +62,12 @@ class WishListTableViewController: UITableViewController {
                     return
             }
             let reference = FIRDatabase.database().reference(withPath: "WishList")
-            let itemRef = reference.child(text.lowercased())
+            let linkRef = reference.childByAutoId()
             
-            let newItemDetails: [String:AnyObject] = [
-                "item" : text as AnyObject,
-                "addedByUser" : self.user.email as AnyObject,
-                "completed" : false as AnyObject
-            ]
-            itemRef.setValue(newItemDetails)
+            let item = WishListItem(key: linkRef.key, item: text, addedByUser: (FIRAuth.auth()?.currentUser?.email)!, completed: false)
+            let itemDict = item.asDictionary
+            
+            linkRef.setValue(itemDict)
             print("Successfully added!")
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
@@ -76,10 +90,10 @@ class WishListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath)
         
-        /*let itemAtRow = items[indexPath.row]
-         
-         cell.textLabel?.text = itemAtRow.item
-         cell.detailTextLabel?.text = itemAtRow.addedByUser*/
+        let itemAtRow = items[indexPath.row]
+        
+        cell.textLabel?.text = itemAtRow.item
+        cell.detailTextLabel?.text = itemAtRow.addedByUser
         
         return cell
     }

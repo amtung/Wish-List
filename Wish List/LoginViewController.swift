@@ -35,7 +35,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     func updateInterface() {
         if let _ = FIRAuth.auth()?.currentUser {
-            self.loginButton.setTitle("Sign out", for: .normal)
+            self.performSegue(withIdentifier: "WishList", sender: self)
         } else {
             self.loginButton.setTitle("Sign in", for: .normal)
         }
