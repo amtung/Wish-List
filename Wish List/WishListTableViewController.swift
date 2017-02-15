@@ -21,17 +21,14 @@ class WishListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        databaseReference = FIRDatabase.database().reference()
+        databaseReference = FIRDatabase.database().reference(withPath: "WishList")
         user = User(uid: (FIRAuth.auth()?.currentUser?.uid)!, email: (FIRAuth.auth()?.currentUser?.email)!)
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addWishListItem))
         self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(title: "Logout", style: UIBarButtonItemStyle.done, target: self, action: #selector(logoutUser))
         
-        databaseReference.observe(.value, with: { (snapshot: FIRDataSnapshot) in
-            dump(snapshot)
-            self.tableView.reloadData()
-        })
         tableView.allowsMultipleSelectionDuringEditing = false
+        getItems()
     }
     
     // MARK: - Methods
@@ -75,6 +72,28 @@ class WishListTableViewController: UITableViewController {
         alert.addAction(saveAction)
         alert.addAction(cancelAction)
         present(alert, animated: true, completion: nil)
+    }
+    
+    func getItems() {
+        databaseReference.observeSingleEvent(of: .value, with: { (snapshot) in
+            dump(snapshot)
+            
+            var newItems: [WishListItem] = []
+            
+            for child in snapshot.children {
+                if let snap = child as? FIRDataSnapshot,
+                    let valueDict = snap.value as? [String:Any] {
+                    
+                    let item = WishListItem(key: snap.key,
+                                            item: valueDict["item"] as? String ?? "",
+                                            addedByUser: valueDict["addedByUser"] as? String ?? "",
+                                            completed: valueDict["completed"] as? Bool ?? false)
+                    newItems.append(item)
+                }
+            }
+            self.items = newItems // re-assign items to the latest version of the data
+            self.tableView.reloadData()
+        })
     }
     
     // MARK: - Table view data source
