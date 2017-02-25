@@ -26,8 +26,6 @@ class WishListTableViewController: UITableViewController {
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addWishListItem))
         self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(title: "Logout", style: UIBarButtonItemStyle.done, target: self, action: #selector(logoutUser))
-        
-        tableView.allowsMultipleSelectionDuringEditing = false
         getItems()
     }
     
@@ -58,13 +56,13 @@ class WishListTableViewController: UITableViewController {
                     print("Empty textfield")
                     return
             }
-            let reference = FIRDatabase.database().reference(withPath: "WishList")
-            let linkRef = reference.childByAutoId()
+            let linkRef = self.databaseReference.childByAutoId()
             
             let item = WishListItem(key: linkRef.key, item: text, addedByUser: (FIRAuth.auth()?.currentUser?.email)!, completed: false)
             let itemDict = item.asDictionary
             
             linkRef.setValue(itemDict)
+            self.tableView.reloadData()
             print("Successfully added!")
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
@@ -74,6 +72,7 @@ class WishListTableViewController: UITableViewController {
         present(alert, animated: true, completion: nil)
     }
     
+    // retreieve data
     func getItems() {
         databaseReference.observeSingleEvent(of: .value, with: { (snapshot) in
             dump(snapshot)
@@ -117,23 +116,19 @@ class WishListTableViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let item = items[indexPath.row]
+            let itemKey = item.key
+            self.databaseReference.child(itemKey).removeValue()
+        }
+    }
+    
     /*
      // Override to support conditional editing of the table view.
      override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
      // Return false if you do not want the specified item to be editable.
      return true
-     }
-     */
-    
-    /*
-     // Override to support editing the table view.
-     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-     if editingStyle == .delete {
-     // Delete the row from the data source
-     tableView.deleteRows(at: [indexPath], with: .fade)
-     } else if editingStyle == .insert {
-     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-     }
      }
      */
     
